@@ -34,6 +34,6 @@ and charts are embedded — no external/CDN calls).
 Reporting period **January–December 2025** · 16,538 work orders · 21 clients across multiple CMMS
 databases · 5,030 asset records.
 
-## Clarificatinons
+## Clarifications
 
-This repository is for demonstration and exploratory purposes only. The data only reflects enough sample cmms data to present a demo version of what is possible. 
+1. This repository is for demonstration and exploratory purposes only. The data only reflects enough sample cmms data to present a demo version of what is possible. 
