@@ -2,7 +2,7 @@
 
 Executive maintenance dashboards.
 
-## Purpsoe
+## Purpose
 
 This repository hosts a set of **interactive dashboards** built from
 CMMS work-order and asset data. They are published here so they
