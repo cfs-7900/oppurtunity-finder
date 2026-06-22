@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Opportunity Finder — Dashboards</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #d9e1ec;
+      --primary: #1b3765;
+      --primary-soft: #e8eef7;
+      --accent: #2563eb;
+      --success: #0f766e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--primary), #244d8f);
+      color: #ffffff;
+      border-radius: 18px;
+      padding: 36px;
+      margin-bottom: 28px;
+      box-shadow: 0 18px 40px rgba(27, 55, 101, 0.18);
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 10px 0 0;
+      color: #dbe7ff;
+      font-size: 1.08rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.45rem;
+      letter-spacing: -0.01em;
+    }
+
+    a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 24px rgba(31, 41, 55, 0.06);
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      color: #374151;
+    }
+
+    .highlight {
+      background: var(--primary-soft);
+      border-left: 5px solid var(--primary);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-top: 18px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .dashboard-link {
+      display: block;
+      background: #f9fbff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .dashboard-link:hover {
+      transform: translateY(-2px);
+      border-color: #b8c7dc;
+      box-shadow: 0 10px 22px rgba(31, 41, 55, 0.08);
+      text-decoration: none;
+    }
+
+    .dashboard-link span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 400;
+    }
+
+    .coverage {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .metric {
+      background: #f9fbff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.3rem;
+      color: var(--success);
+      line-height: 1.2;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .note {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 14px;
+      padding: 18px 20px;
+      color: #7c2d12;
+    }
+
+    .note strong {
+      color: #9a3412;
+    }
+
+    ul {
+      margin: 14px 0 0;
+      padding-left: 22px;
+    }
+
+    .start {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      color: #075985;
+    }
+
+    footer {
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-align: center;
+      margin-top: 32px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>Opportunity Finder — Dashboards</h1>
+      <p>Executive maintenance dashboards built to identify additional revenue opportunities, operational insight, and data-quality gaps.</p>
+    </section>
+
+    <section class="card">
+      <h2>Purpose</h2>
+      <p class="lead">
+        This repository hosts a set of interactive dashboards built from CMMS work-order and asset data. They are published here so they can be opened in any browser with no Power BI, no server, no login, and no software to install.
+      </p>
+      <p>
+        The dashboards turn raw work-order exports into an executive view focused on the core question:
+      </p>
+      <div class="highlight">
+        Where can Camelot generate additional revenue beyond baseline contracts?
+      </div>
+      <p>
+        The dashboards highlight opportunities to self-perform work currently outsourced to vendors, recover missed billing, and identify project-bid candidates, while also surfacing data-quality and SWOT insights.
+      </p>
+      <p>
+        Each page includes live Client / Database / Month filters, KPI cards, trend and breakdown charts, auto-generated insights, and sortable detail tables. Every file is fully self-contained with all data and charts embedded, and no external or CDN calls.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Dashboards</h2>
+      <div class="dashboard-grid">
+        <a class="dashboard-link" href="https://cfs-7900.github.io/oppurtunity-finder/index.html">
+          Master Executive Dashboard
+          <span>Primary starting point and executive overview.</span>
+        </a>
+        <a class="dashboard-link" href="https://cfs-7900.github.io/oppurtunity-finder/opportunity-finder.html">
+          Opportunity Finder
+          <span>Revenue opportunities, outsourced work, and project-bid candidates.</span>
+        </a>
+        <a class="dashboard-link" href="https://cfs-7900.github.io/oppurtunity-finder/work-orders.html">
+          Work Orders
+          <span>Work-order trends, categories, clients, vendors, and detail tables.</span>
+        </a>
+        <a class="dashboard-link" href="https://cfs-7900.github.io/oppurtunity-finder/assets.html">
+          Assets
+          <span>Asset records, condition insight, and maintenance visibility.</span>
+        </a>
+        <a class="dashboard-link" href="https://cfs-7900.github.io/oppurtunity-finder/data-quality.html">
+          Data Quality
+          <span>Missing, inconsistent, or incomplete records that need cleanup.</span>
+        </a>
+      </div>
+      <div class="start">
+        Start with the <strong>Master Executive Dashboard</strong>, then use the in-page tabs to move between views.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Coverage</h2>
+      <p>Reporting period: <strong>January–December 2025</strong></p>
+      <div class="coverage">
+        <div class="metric">
+          <strong>16,538</strong>
+          <span>Work orders</span>
+        </div>
+        <div class="metric">
+          <strong>21</strong>
+          <span>Clients</span>
+        </div>
+        <div class="metric">
+          <strong>Multiple</strong>
+          <span>CMMS databases</span>
+        </div>
+        <div class="metric">
+          <strong>5,030</strong>
+          <span>Asset records</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Clarification</h2>
+      <div class="note">
+        <strong>Demonstration use only:</strong> This repository is for demonstration and exploratory purposes only. The data reflects enough sample CMMS data to present a demo version of what is possible.
+      </div>
+    </section>
+
+    <footer>
+      Opportunity Finder — Executive Maintenance Dashboards
+    </footer>
+  </main>
+</body>
+</html>
