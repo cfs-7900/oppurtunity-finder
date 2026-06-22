@@ -1,0 +1,176 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Data Quality Dashboard · CFS Opportunity Finder</title><style>
+:root{--navy:#0f172a;--blue:#1e3a5f;--card:#fff;--muted:#64748b;--border:#e2e8f0;--bg:#f8fafc;
+--success:#16a34a;--warning:#f59e0b;--danger:#dc2626;--accent:#2563eb;--teal:#0d9488;--violet:#7c3aed;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--navy);font-size:14px;line-height:1.45}
+a{color:inherit;text-decoration:none}
+header.top{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);color:#fff;padding:16px 28px;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+header.top .row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+header.top h1{font-size:19px;font-weight:700;letter-spacing:.2px}
+header.top .cat{font-size:12px;color:#cbd5e1;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+header.top .meta{font-size:12px;color:#cbd5e1;text-align:right}
+.navlinks{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.navlinks a{font-size:12px;font-weight:600;color:#cbd5e1;padding:5px 11px;border-radius:7px;border:1px solid rgba(255,255,255,.15)}
+.navlinks a:hover{background:rgba(255,255,255,.1);color:#fff}
+.navlinks a.active{background:#fff;color:var(--navy)}
+.wrap{max-width:1320px;margin:0 auto;padding:20px 28px 60px}
+.filters{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin:18px 0;box-shadow:0 1px 3px rgba(0,0,0,.07),0 4px 12px rgba(0,0,0,.05)}
+.filters label{display:flex;flex-direction:column;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;gap:5px}
+.filters select{font-size:13px;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--navy);min-width:150px;font-weight:600}
+.filters .reset{align-self:center;margin-left:auto;font-size:12px;color:var(--accent);cursor:pointer;font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin:18px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.07),0 4px 12px rgba(0,0,0,.05);border-top:3px solid var(--accent)}
+.kpi .lab{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.6px}
+.kpi .val{font-size:26px;font-weight:800;margin-top:6px;letter-spacing:-.5px}
+.kpi .sub{font-size:12px;color:var(--muted);margin-top:3px}
+.kpi.green{border-top-color:var(--success)} .kpi.amber{border-top-color:var(--warning)}
+.kpi.red{border-top-color:var(--danger)} .kpi.teal{border-top-color:var(--teal)} .kpi.violet{border-top-color:var(--violet)}
+.grid{display:grid;gap:16px;margin:8px 0 20px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(380px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.07),0 4px 12px rgba(0,0,0,.05)}
+.panel h3{font-size:14px;font-weight:700;margin-bottom:4px}
+.panel .hint{font-size:12px;color:var(--muted);margin-bottom:12px}
+.section-title{font-size:15px;font-weight:800;margin:26px 0 4px;color:var(--navy)}
+.section-sub{font-size:12.5px;color:var(--muted);margin-bottom:8px}
+.insights{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.ins{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ins.s{border-left-color:var(--success)} .ins.w{border-left-color:var(--warning)}
+.ins.o{border-left-color:var(--accent)} .ins.t{border-left-color:var(--danger)}
+.ins .tag{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.ins h4{font-size:13.5px;margin:5px 0 4px} .ins p{font-size:12.5px;color:#334155}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap}
+th{position:sticky;top:0;background:#f1f5f9;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);cursor:pointer;user-select:none}
+th:hover{color:var(--navy)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tbody tr:hover{background:#f8fafc}
+.tablewrap{max-height:560px;overflow:auto;border:1px solid var(--border);border-radius:12px;background:var(--card)}
+.badge{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:20px}
+.b-green{background:#dcfce7;color:#166534}.b-amber{background:#fef3c7;color:#92400e}.b-red{background:#fee2e2;color:#991b1b}.b-blue{background:#dbeafe;color:#1e40af}.b-gray{background:#f1f5f9;color:#475569}
+.note{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:14px 16px;font-size:12.5px;color:#713f12}
+.note ul{margin:8px 0 0 18px}.note li{margin:3px 0}
+.bar-row{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:12px}
+.bar-row .bl{width:150px;min-width:150px;color:#334155;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-row .bt{flex:1;background:#eef2f7;border-radius:6px;height:18px;overflow:hidden}
+.bar-row .bf{height:100%;border-radius:6px}
+.bar-row .bv{width:90px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+footer{color:var(--muted);font-size:12px;text-align:center;padding:26px;border-top:1px solid var(--border);margin-top:20px}
+.empty{padding:40px;text-align:center;color:var(--muted);font-weight:600}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:5px}.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+</style></head><body><header class=top><div class=row><div><h1>Data Quality Dashboard</h1><div class=cat>Source Data Health & Recommendations</div></div><div class=meta>Camelot Facility Services · Opportunity Finder<br>Last updated 2026-06-22 22:54</div></div><div class=navlinks><a href="index.html" class="">Master</a><a href="opportunity-finder.html" class="">Opportunity Finder</a><a href="work-orders.html" class="">Work Orders</a><a href="assets.html" class="">Assets</a><a href="data-quality.html" class="active">Data Quality</a></div></header><div class=wrap>
+<div class=section-sub>Health of the source data feeding every dashboard — what's missing, where, and how to improve it for stronger analytics over time.</div>
+<div class=kpis>
+<div class="kpi "><div class=lab>Source Files Read</div><div class=val>6</div><div class=sub>across all categories</div></div>
+<div class="kpi "><div class=lab>Work Orders</div><div class=val>16,538</div><div class=sub>18,886 cost line items</div></div>
+<div class="kpi "><div class=lab>Assets</div><div class=val>5,030</div><div class=sub>equipment records</div></div>
+<div class="kpi red"><div class=lab>Zero-Cost Closed WOs</div><div class=val>8,966</div><div class=sub>54% — no labor or vendor cost</div></div>
+<div class="kpi amber"><div class=lab>Labor w/o Cost</div><div class=val>6,635</div><div class=sub>named employee, $0 recorded</div></div>
+<div class="kpi green"><div class=lab>Files Failed</div><div class=val>0</div><div class=sub>parsed successfully</div></div>
+</div>
+<div class="grid g2">
+ <div class=panel><h3>Data completeness by client</h3><div class=hint>% of work orders with category &amp; problem populated (higher is better)</div><div id=qComplete></div></div>
+ <div class=panel><h3>Missing-field rates — work orders</h3><div class=hint>Share of work orders missing each key field</div><div id=qMiss></div></div>
+</div>
+<div class=section-title>Leadership recommendations</div>
+<div class=section-sub>Targeted actions to raise data quality and unlock more reliable opportunity detection.</div>
+<div class=insights id=qRec></div>
+<div class=section-title>Client data-quality scorecard</div>
+<div class=tablewrap style="margin-top:6px"><table><thead><tr><th>Client</th><th class=num>Work Orders</th><th class=num>Completeness</th><th class=num>Outsourced %</th><th class=num>Spend</th><th class=num>Self-Perform Pool</th></tr></thead><tbody id=qScore></tbody></table></div>
+<div class=section-title>Source file inventory</div>
+<div class=tablewrap style="margin-top:6px"><table><thead><tr><th>File</th><th>Type</th><th>Database</th><th>Category</th><th class=num>Size (KB)</th></tr></thead><tbody><tr><td>input-data/assets/mcx-assets-entCamelot-2025.csv</td><td>CSV</td><td>Camelot</td><td>assets</td><td class=num>400.9</td></tr><tr><td>input-data/assets/mcx-assets-entPizzaHut-2025.csv</td><td>CSV</td><td>PizzaHut</td><td>assets</td><td class=num>78.0</td></tr><tr><td>input-data/work-orders/mcx-wo/mcx-wo-entCamelot-2025.csv</td><td>CSV</td><td>Camelot</td><td>work-orders</td><td class=num>1557.6</td></tr><tr><td>input-data/work-orders/mcx-wo/mcx-wo-entPizzaHut-2025.csv</td><td>CSV</td><td>PizzaHut</td><td>work-orders</td><td class=num>1045.6</td></tr><tr><td>input-data/work-orders/mcx-wo-actuals/mcx-wo-actuals-entCamelot-2025.csv</td><td>CSV</td><td>Camelot</td><td>work-orders</td><td class=num>1760.2</td></tr><tr><td>input-data/work-orders/mcx-wo-actuals/mcx-wo-actuals-entPizzaHut-2025.csv</td><td>CSV</td><td>PizzaHut</td><td>work-orders</td><td class=num>1272.4</td></tr></tbody></table></div>
+<div class="note" style="margin-top:20px"><strong>Assumptions made in this build.</strong>
+<ul>
+<li>The <code>ent</code> in each filename denotes a separate CMMS database; records are unified by <code>client_name</code> (one database may hold many clients).</li>
+<li>Work-order cost is aggregated from the <code>-actuals</code> export (labor + vendor line items); <code>asset_name</code> is joined from the base work-order export by ID.</li>
+<li>"Vendor-required" work (excluded from opportunity) is identified from <code>reference-data/services-vendor-required.csv</code> plus keyword rules for landscaping, snow, fire/life-safety, security, and purchases.</li>
+<li>Vendor names equal to "Camelot" are treated as self-performance; "Vendor"/"Deposit"/"Final Invoice" are treated as unidentified placeholders.</li>
+<li>Modeled recoverable gross profit applies a 35% margin assumption to the self-perform pool.</li>
+<li>All work orders in the current data are Closed and dated within 2025.</li>
+</ul></div>
+</div><footer>Generated 2026-06-22 22:54 · 6 source files · 16,538 work orders · 5,030 assets · data range 2025-01-01 to 2025-12-31 · self-contained (no internet required)</footer><script>
+const PAL=['#2563eb','#0d9488','#7c3aed','#f59e0b','#dc2626','#16a34a','#0ea5e9','#db2777','#65a30d','#9333ea','#ea580c','#0891b2'];
+function money(n){n=+n||0;const s=n<0?'-':'';n=Math.abs(n);
+ if(n>=1e6)return s+'$'+(n/1e6).toFixed(n>=1e7?1:2)+'M';
+ if(n>=1e3)return s+'$'+(n/1e3).toFixed(n>=1e5?0:1)+'K';
+ return s+'$'+n.toFixed(0);}
+function num(n){return (+n||0).toLocaleString('en-US')}
+function el(id){return document.getElementById(id)}
+function groupSum(rows,key,val){const m=new Map();for(const r of rows){const k=key(r)||'(blank)';m.set(k,(m.get(k)||0)+(+val(r)||0));}
+ return [...m.entries()].map(([k,v])=>({k,v})).sort((a,b)=>b.v-a.v);}
+function groupCount(rows,key){const m=new Map();for(const r of rows){const k=key(r)||'(blank)';m.set(k,(m.get(k)||0)+1);}
+ return [...m.entries()].map(([k,v])=>({k,v})).sort((a,b)=>b.v-a.v);}
+function hbars(id,items,opt){opt=opt||{};const c=el(id);if(!c)return;const top=items.slice(0,opt.n||10);
+ const max=Math.max(1,...top.map(d=>d.v));const fmt=opt.money?money:num;
+ if(!top.length){c.innerHTML='<div class="empty">No data</div>';return;}
+ c.innerHTML=top.map((d,i)=>`<div class="bar-row"><div class="bl" title="${esc(d.k)}">${esc(d.k)}</div>
+  <div class="bt"><div class="bf" style="width:${(d.v/max*100).toFixed(1)}%;background:${opt.color||PAL[i%PAL.length]}"></div></div>
+  <div class="bv">${fmt(d.v)}</div></div>`).join('');}
+function vbars(id,labels,series,opt){opt=opt||{};const c=el(id);if(!c)return;
+ const W=Math.max(520,labels.length*46),H=230,P=34,BW=W-2*P,BH=H-2*P;
+ const all=series.flatMap(s=>s.data);const max=Math.max(1,...all);
+ const groups=series.length,gw=BW/labels.length,bw=Math.min(26,(gw-6)/groups);
+ let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMinYMid meet">`;
+ for(let g=0;g<=4;g++){const y=P+BH*g/4;const v=max*(1-g/4);
+  s+=`<line x1="${P}" y1="${y}" x2="${W-P}" y2="${y}" stroke="#eef2f7"/><text x="${P-6}" y="${y+3}" text-anchor="end" font-size="9" fill="#94a3b8">${opt.money?money(v):Math.round(v)}</text>`;}
+ labels.forEach((lab,i)=>{series.forEach((se,j)=>{const v=se.data[i]||0;const h=v/max*BH;
+   const x=P+i*gw+(gw-bw*groups)/2+j*bw;const y=P+BH-h;
+   s+=`<rect x="${x}" y="${y}" width="${bw-2}" height="${Math.max(0,h)}" rx="2" fill="${se.color}"><title>${esc(lab)} · ${se.name}: ${opt.money?money(v):num(v)}</title></rect>`;});
+  s+=`<text x="${P+i*gw+gw/2}" y="${H-14}" text-anchor="middle" font-size="9" fill="#64748b">${esc(lab.slice(2))}</text>`;});
+ s+='</svg>';c.innerHTML=s;}
+function lineChart(id,labels,data,opt){opt=opt||{};const c=el(id);if(!c)return;
+ const W=Math.max(520,labels.length*46),H=230,P=36,BW=W-2*P,BH=H-2*P;
+ const max=Math.max(1,...data);
+ const xs=i=>P+(labels.length<=1?BW/2:BW*i/(labels.length-1));const ys=v=>P+BH-(v/max*BH);
+ let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMinYMid meet">`;
+ for(let g=0;g<=4;g++){const y=P+BH*g/4;const v=max*(1-g/4);
+  s+=`<line x1="${P}" y1="${y}" x2="${W-P}" y2="${y}" stroke="#eef2f7"/><text x="${P-6}" y="${y+3}" text-anchor="end" font-size="9" fill="#94a3b8">${opt.money?money(v):Math.round(v)}</text>`;}
+ const pts=data.map((v,i)=>`${xs(i)},${ys(v)}`).join(' ');
+ s+=`<polyline points="${P},${P+BH} ${pts} ${P+BW},${P+BH}" fill="${opt.color||'#2563eb'}22" stroke="none"/>`;
+ s+=`<polyline points="${pts}" fill="none" stroke="${opt.color||'#2563eb'}" stroke-width="2.5"/>`;
+ data.forEach((v,i)=>{s+=`<circle cx="${xs(i)}" cy="${ys(v)}" r="3" fill="#fff" stroke="${opt.color||'#2563eb'}" stroke-width="2"><title>${esc(labels[i])}: ${opt.money?money(v):num(v)}</title></circle>`;});
+ labels.forEach((lab,i)=>{if(labels.length>14&&i%2)return;s+=`<text x="${xs(i)}" y="${H-14}" text-anchor="middle" font-size="9" fill="#64748b">${esc(lab.slice(2))}</text>`;});
+ s+='</svg>';c.innerHTML=s;}
+function donut(id,items,opt){opt=opt||{};const c=el(id);if(!c)return;const top=items.slice(0,opt.n||6);
+ const total=top.reduce((a,d)=>a+d.v,0)||1;const fmt=opt.money?money:num;
+ const R=70,r=44,cx=90,cy=90;let a0=-Math.PI/2,s=`<svg viewBox="0 0 360 184" width="100%">`;
+ top.forEach((d,i)=>{const a1=a0+d.v/total*2*Math.PI;const x0=cx+R*Math.cos(a0),y0=cy+R*Math.sin(a0),x1=cx+R*Math.cos(a1),y1=cy+R*Math.sin(a1);
+  const xi1=cx+r*Math.cos(a1),yi1=cy+r*Math.sin(a1),xi0=cx+r*Math.cos(a0),yi0=cy+r*Math.sin(a0);const big=(a1-a0)>Math.PI?1:0;
+  s+=`<path d="M${x0} ${y0} A${R} ${R} 0 ${big} 1 ${x1} ${y1} L${xi1} ${yi1} A${r} ${r} 0 ${big} 0 ${xi0} ${yi0} Z" fill="${PAL[i%PAL.length]}"><title>${esc(d.k)}: ${fmt(d.v)} (${(d.v/total*100).toFixed(0)}%)</title></path>`;a0=a1;});
+ s+=`<text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="13" font-weight="800" fill="#0f172a">${fmt(total)}</text><text x="${cx}" y="${cy+14}" text-anchor="middle" font-size="9" fill="#64748b">total</text></svg>`;
+ let leg='<div class="legend">'+top.map((d,i)=>`<span><i style="background:${PAL[i%PAL.length]}"></i>${esc(d.k)} ${(d.v/total*100).toFixed(0)}%</span>`).join('')+'</div>';
+ c.innerHTML=s+leg;}
+function esc(s){return (s==null?'':''+s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function makeTable(id,rows,cols,opt){opt=opt||{};const c=el(id);if(!c)return;let sortK=opt.sort||cols[0].k,sortDir=opt.dir||-1;
+ function draw(){const sorted=[...rows].sort((a,b)=>{let x=a[sortK],y=b[sortK];if(typeof x==='number'||typeof y==='number'){x=+x||0;y=+y||0;}else{x=(''+x).toLowerCase();y=(''+y).toLowerCase();}return x<y?-sortDir:x>y?sortDir:0;});
+  const cap=opt.cap||300;const show=sorted.slice(0,cap);
+  let h='<div class="tablewrap"><table><thead><tr>'+cols.map(col=>`<th class="${col.num?'num':''}" data-k="${col.k}">${col.t}${sortK===col.k?(sortDir>0?' ▲':' ▼'):''}</th>`).join('')+'</tr></thead><tbody>';
+  h+=show.map(r=>'<tr>'+cols.map(col=>`<td class="${col.num?'num':''}">${col.fmt?col.fmt(r[col.k],r):esc(r[col.k])}</td>`).join('')+'</tr>').join('');
+  h+='</tbody></table></div>';
+  if(sorted.length>cap)h+=`<div class="hint" style="padding:8px 4px">Showing top ${cap} of ${num(sorted.length)} rows (sorted by ${sortK}). Use filters to narrow.</div>`;
+  c.innerHTML=h;
+  c.querySelectorAll('th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;if(k===sortK)sortDir*=-1;else{sortK=k;sortDir=-1;}draw();});}
+ draw();}
+function fillSelect(id,vals,label){const s=el(id);if(!s)return;s.innerHTML=`<option value="__all">All ${label}</option>`+vals.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');}
+
+const EMBED={"dq":{"files":6,"wo":16538,"lines":18886,"assets":5030,"date_min":"2025-01-01","date_max":"2025-12-31","blank_problem":2978,"blank_cat":92,"zero_cost":8966,"labor_no_cost":6635,"vendor_unident":88,"vendor_unident_val":2642495,"as_no_install":1367,"as_no_cost":5021,"client_quality":[{"client":"Liberty Mutual Inc","wo":486,"completeness":100,"outsource":94,"spend":3420205,"pool":3042537},{"client":"7-Eleven","wo":2634,"completeness":65,"outsource":97,"spend":1677337,"pool":1105557},{"client":"Bloomin Brands Inc","wo":1535,"completeness":92,"outsource":100,"spend":1558995,"pool":1227176},{"client":"Churchs Chicken","wo":1194,"completeness":100,"outsource":96,"spend":551627,"pool":318734},{"client":"Pizza Hut","wo":5818,"completeness":67,"outsource":89,"spend":403771,"pool":359063},{"client":"Rocket Mortgage","wo":141,"completeness":100,"outsource":99,"spend":294141,"pool":65229},{"client":"University of Oklahoma","wo":331,"completeness":99,"outsource":89,"spend":108423,"pool":85787},{"client":"Gates Rubber Co","wo":39,"completeness":100,"outsource":100,"spend":35400,"pool":12575},{"client":"Epsilon","wo":177,"completeness":97,"outsource":93,"spend":28841,"pool":1827},{"client":"Sonic Restaurants","wo":53,"completeness":85,"outsource":100,"spend":21482,"pool":2246},{"client":"Orion Office Reit","wo":153,"completeness":97,"outsource":69,"spend":6053,"pool":4168},{"client":"Ryder","wo":37,"completeness":97,"outsource":7,"spend":5153,"pool":353},{"client":"Texas Health Resources","wo":128,"completeness":95,"outsource":82,"spend":4243,"pool":792},{"client":"Fleet Maintenance","wo":243,"completeness":98,"outsource":100,"spend":2752,"pool":2752},{"client":"Unknown","wo":20,"completeness":90,"outsource":100,"spend":2710,"pool":1565},{"client":"Abbott Laboratories","wo":2,"completeness":100,"outsource":0,"spend":0,"pool":0},{"client":"Cross Roads Hormonal Health & Wellness","wo":25,"completeness":96,"outsource":0,"spend":0,"pool":0},{"client":"Maintenance","wo":40,"completeness":100,"outsource":0,"spend":0,"pool":0},{"client":"Shreveport","wo":3182,"completeness":100,"outsource":0,"spend":0,"pool":0},{"client":"Southern Baptists of Texas Convention","wo":261,"completeness":98,"outsource":0,"spend":0,"pool":0},{"client":"Trinity Christian Academy","wo":39,"completeness":100,"outsource":0,"spend":0,"pool":0}],"inventory":[{"file":"input-data/assets/mcx-assets-entCamelot-2025.csv","type":"CSV","size_kb":400.9,"ent":"Camelot","category":"assets"},{"file":"input-data/assets/mcx-assets-entPizzaHut-2025.csv","type":"CSV","size_kb":78.0,"ent":"PizzaHut","category":"assets"},{"file":"input-data/work-orders/mcx-wo/mcx-wo-entCamelot-2025.csv","type":"CSV","size_kb":1557.6,"ent":"Camelot","category":"work-orders"},{"file":"input-data/work-orders/mcx-wo/mcx-wo-entPizzaHut-2025.csv","type":"CSV","size_kb":1045.6,"ent":"PizzaHut","category":"work-orders"},{"file":"input-data/work-orders/mcx-wo-actuals/mcx-wo-actuals-entCamelot-2025.csv","type":"CSV","size_kb":1760.2,"ent":"Camelot","category":"work-orders"},{"file":"input-data/work-orders/mcx-wo-actuals/mcx-wo-actuals-entPizzaHut-2025.csv","type":"CSV","size_kb":1272.4,"ent":"PizzaHut","category":"work-orders"}],"warnings":[]}};
+
+const DQ=EMBED.dq;
+hbars('qComplete',DQ.client_quality.filter(c=>c.wo>=20).map(c=>({k:c.client,v:c.completeness})).sort((a,b)=>a.v-b.v),{n:12});
+const miss=[
+ {k:'Problem name',v:Math.round(DQ.blank_problem/DQ.wo*100)},
+ {k:'Labor cost (named, $0)',v:Math.round(DQ.labor_no_cost/DQ.wo*100)},
+ {k:'Any cost (zero-cost closed)',v:Math.round(DQ.zero_cost/DQ.wo*100)},
+ {k:'Category',v:Math.round(DQ.blank_cat/DQ.wo*100)},
+];
+hbars('qMiss',miss.sort((a,b)=>b.v-a.v),{n:6,color:'#dc2626'});
+el('qRec').innerHTML=[
+ ['w','Capture labor cost',`${num(DQ.labor_no_cost)} work orders show a named employee but $0 labor cost. Enforce labor-hour/rate entry so self-performance is valued correctly and the outsource ratio stops being overstated.`],
+ ['w','Name every vendor',`${money(DQ.vendor_unident_val)} of outsourced spend is logged under "Vendor". Require the real contractor name to enable spend-by-vendor analysis and rate benchmarking.`],
+ ['o','Close category gaps',`${Math.round(DQ.blank_problem/DQ.wo*100)}% of work orders lack a problem name. Make category &amp; problem required fields — especially on the lowest-scoring accounts below.`],
+ ['o','Enrich asset records',`Most assets have no purchase cost and ${num(DQ.as_no_install)} lack an install date. Backfill asset metadata to unlock warranty-recovery and replacement-planning analytics.`],
+].map(([c,h,p])=>`<div class="ins ${c}"><div class=tag>Recommendation</div><h4>${h}</h4><p>${p}</p></div>`).join('');
+function badge(v){const cls=v>=90?'b-green':v>=70?'b-blue':v>=40?'b-amber':'b-red';return `<span class="badge ${cls}">${v}%</span>`;}
+el('qScore').innerHTML=DQ.client_quality.map(c=>`<tr><td>${esc(c.client)}</td><td class=num>${num(c.wo)}</td><td class=num>${badge(c.completeness)}</td><td class=num>${c.outsource}%</td><td class=num>${money(c.spend)}</td><td class=num>${money(c.pool)}</td></tr>`).join('');
+</script></body></html>

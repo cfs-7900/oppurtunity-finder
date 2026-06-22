@@ -1,0 +1,168 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Master Executive Dashboard · CFS Opportunity Finder</title><style>
+:root{--navy:#0f172a;--blue:#1e3a5f;--card:#fff;--muted:#64748b;--border:#e2e8f0;--bg:#f8fafc;
+--success:#16a34a;--warning:#f59e0b;--danger:#dc2626;--accent:#2563eb;--teal:#0d9488;--violet:#7c3aed;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--navy);font-size:14px;line-height:1.45}
+a{color:inherit;text-decoration:none}
+header.top{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);color:#fff;padding:16px 28px;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+header.top .row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+header.top h1{font-size:19px;font-weight:700;letter-spacing:.2px}
+header.top .cat{font-size:12px;color:#cbd5e1;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+header.top .meta{font-size:12px;color:#cbd5e1;text-align:right}
+.navlinks{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.navlinks a{font-size:12px;font-weight:600;color:#cbd5e1;padding:5px 11px;border-radius:7px;border:1px solid rgba(255,255,255,.15)}
+.navlinks a:hover{background:rgba(255,255,255,.1);color:#fff}
+.navlinks a.active{background:#fff;color:var(--navy)}
+.wrap{max-width:1320px;margin:0 auto;padding:20px 28px 60px}
+.filters{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin:18px 0;box-shadow:0 1px 3px rgba(0,0,0,.07),0 4px 12px rgba(0,0,0,.05)}
+.filters label{display:flex;flex-direction:column;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;gap:5px}
+.filters select{font-size:13px;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--navy);min-width:150px;font-weight:600}
+.filters .reset{align-self:center;margin-left:auto;font-size:12px;color:var(--accent);cursor:pointer;font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin:18px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.07),0 4px 12px rgba(0,0,0,.05);border-top:3px solid var(--accent)}
+.kpi .lab{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.6px}
+.kpi .val{font-size:26px;font-weight:800;margin-top:6px;letter-spacing:-.5px}
+.kpi .sub{font-size:12px;color:var(--muted);margin-top:3px}
+.kpi.green{border-top-color:var(--success)} .kpi.amber{border-top-color:var(--warning)}
+.kpi.red{border-top-color:var(--danger)} .kpi.teal{border-top-color:var(--teal)} .kpi.violet{border-top-color:var(--violet)}
+.grid{display:grid;gap:16px;margin:8px 0 20px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(380px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.07),0 4px 12px rgba(0,0,0,.05)}
+.panel h3{font-size:14px;font-weight:700;margin-bottom:4px}
+.panel .hint{font-size:12px;color:var(--muted);margin-bottom:12px}
+.section-title{font-size:15px;font-weight:800;margin:26px 0 4px;color:var(--navy)}
+.section-sub{font-size:12.5px;color:var(--muted);margin-bottom:8px}
+.insights{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.ins{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ins.s{border-left-color:var(--success)} .ins.w{border-left-color:var(--warning)}
+.ins.o{border-left-color:var(--accent)} .ins.t{border-left-color:var(--danger)}
+.ins .tag{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.ins h4{font-size:13.5px;margin:5px 0 4px} .ins p{font-size:12.5px;color:#334155}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap}
+th{position:sticky;top:0;background:#f1f5f9;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);cursor:pointer;user-select:none}
+th:hover{color:var(--navy)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tbody tr:hover{background:#f8fafc}
+.tablewrap{max-height:560px;overflow:auto;border:1px solid var(--border);border-radius:12px;background:var(--card)}
+.badge{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:20px}
+.b-green{background:#dcfce7;color:#166534}.b-amber{background:#fef3c7;color:#92400e}.b-red{background:#fee2e2;color:#991b1b}.b-blue{background:#dbeafe;color:#1e40af}.b-gray{background:#f1f5f9;color:#475569}
+.note{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:14px 16px;font-size:12.5px;color:#713f12}
+.note ul{margin:8px 0 0 18px}.note li{margin:3px 0}
+.bar-row{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:12px}
+.bar-row .bl{width:150px;min-width:150px;color:#334155;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-row .bt{flex:1;background:#eef2f7;border-radius:6px;height:18px;overflow:hidden}
+.bar-row .bf{height:100%;border-radius:6px}
+.bar-row .bv{width:90px;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+footer{color:var(--muted);font-size:12px;text-align:center;padding:26px;border-top:1px solid var(--border);margin-top:20px}
+.empty{padding:40px;text-align:center;color:var(--muted);font-weight:600}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:5px}.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+</style></head><body><header class=top><div class=row><div><h1>Master Executive Dashboard</h1><div class=cat>All Categories Roll-Up</div></div><div class=meta>Camelot Facility Services · Opportunity Finder<br>Last updated 2026-06-22 22:54</div></div><div class=navlinks><a href="index.html" class="active">Master</a><a href="opportunity-finder.html" class="">Opportunity Finder</a><a href="work-orders.html" class="">Work Orders</a><a href="assets.html" class="">Assets</a><a href="data-quality.html" class="">Data Quality</a></div></header><div class=wrap>
+<div class=section-sub>Executive roll-up across all categories. Drill into any area using the tabs above.</div>
+<div class=kpis>
+<div class="kpi "><div class=lab>Total Maintenance Spend</div><div class=val>$8.12M</div><div class=sub>16,538 work orders · 21 clients</div></div>
+<div class="kpi amber"><div class=lab>Outsourced to Vendors</div><div class=val>$7.77M</div><div class=sub>96% of spend</div></div>
+<div class="kpi teal"><div class=lab>Self-Performed (labor)</div><div class=val>$349K</div><div class=sub>4.3% of spend by $</div></div>
+<div class="kpi green"><div class=lab>Self-Perform Opportunity</div><div class=val>$6.23M</div><div class=sub>in-scope outsourced pool</div></div>
+<div class="kpi green"><div class=lab>Modeled Recoverable GP</div><div class=val>$2.18M</div><div class=sub>@ 35% margin assumption</div></div>
+<div class="kpi red"><div class=lab>Data Quality Flags</div><div class=val>15,601</div><div class=sub>WOs missing cost detail</div></div>
+</div>
+<div class="grid g2">
+ <div class=panel><h3>Monthly spend — vendor vs. self-performed</h3><div class=hint>Where the maintenance dollars went each month in 2025</div><div id=mTrend></div>
+  <div class=legend><span><i style="background:#f59e0b"></i>Vendor (outsourced)</span><span><i style="background:#0d9488"></i>Labor (self-performed)</span></div></div>
+ <div class=panel><h3>Spend by client</h3><div class=hint>Total maintenance spend, top accounts</div><div id=mClient></div></div>
+</div>
+<div class="grid g2">
+ <div class=panel><h3>Revenue opportunity by category</h3><div class=hint>In-scope outsourced work Camelot could self-perform</div><div id=mPool></div></div>
+ <div class=panel><h3>Vendor vs. self-performed split</h3><div class=hint>Share of total spend by delivery model</div><div id=mSplit></div></div>
+</div>
+<div class=section-title>Key executive insights</div>
+<div class=insights id=mIns></div>
+<div class="note" style="margin-top:22px"><strong>How to read these numbers.</strong>
+ The opportunity pool is outsourced (vendor) spend on trades Camelot can self-perform, after excluding services that require a vendor
+ (landscaping, snow removal, fire &amp; life safety, security, material purchases) per the reference list. The modeled recoverable figure applies a
+ 35% gross-margin assumption — adjust as actual self-perform economics are confirmed. Self-perform % by dollar is understated because
+ 6,635 work orders have labor assigned but $0 cost recorded (see Data Quality).</div>
+</div><footer>Generated 2026-06-22 22:54 · 6 source files · 16,538 work orders · 5,030 assets · data range 2025-01-01 to 2025-12-31 · self-contained (no internet required)</footer><script>
+const PAL=['#2563eb','#0d9488','#7c3aed','#f59e0b','#dc2626','#16a34a','#0ea5e9','#db2777','#65a30d','#9333ea','#ea580c','#0891b2'];
+function money(n){n=+n||0;const s=n<0?'-':'';n=Math.abs(n);
+ if(n>=1e6)return s+'$'+(n/1e6).toFixed(n>=1e7?1:2)+'M';
+ if(n>=1e3)return s+'$'+(n/1e3).toFixed(n>=1e5?0:1)+'K';
+ return s+'$'+n.toFixed(0);}
+function num(n){return (+n||0).toLocaleString('en-US')}
+function el(id){return document.getElementById(id)}
+function groupSum(rows,key,val){const m=new Map();for(const r of rows){const k=key(r)||'(blank)';m.set(k,(m.get(k)||0)+(+val(r)||0));}
+ return [...m.entries()].map(([k,v])=>({k,v})).sort((a,b)=>b.v-a.v);}
+function groupCount(rows,key){const m=new Map();for(const r of rows){const k=key(r)||'(blank)';m.set(k,(m.get(k)||0)+1);}
+ return [...m.entries()].map(([k,v])=>({k,v})).sort((a,b)=>b.v-a.v);}
+function hbars(id,items,opt){opt=opt||{};const c=el(id);if(!c)return;const top=items.slice(0,opt.n||10);
+ const max=Math.max(1,...top.map(d=>d.v));const fmt=opt.money?money:num;
+ if(!top.length){c.innerHTML='<div class="empty">No data</div>';return;}
+ c.innerHTML=top.map((d,i)=>`<div class="bar-row"><div class="bl" title="${esc(d.k)}">${esc(d.k)}</div>
+  <div class="bt"><div class="bf" style="width:${(d.v/max*100).toFixed(1)}%;background:${opt.color||PAL[i%PAL.length]}"></div></div>
+  <div class="bv">${fmt(d.v)}</div></div>`).join('');}
+function vbars(id,labels,series,opt){opt=opt||{};const c=el(id);if(!c)return;
+ const W=Math.max(520,labels.length*46),H=230,P=34,BW=W-2*P,BH=H-2*P;
+ const all=series.flatMap(s=>s.data);const max=Math.max(1,...all);
+ const groups=series.length,gw=BW/labels.length,bw=Math.min(26,(gw-6)/groups);
+ let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMinYMid meet">`;
+ for(let g=0;g<=4;g++){const y=P+BH*g/4;const v=max*(1-g/4);
+  s+=`<line x1="${P}" y1="${y}" x2="${W-P}" y2="${y}" stroke="#eef2f7"/><text x="${P-6}" y="${y+3}" text-anchor="end" font-size="9" fill="#94a3b8">${opt.money?money(v):Math.round(v)}</text>`;}
+ labels.forEach((lab,i)=>{series.forEach((se,j)=>{const v=se.data[i]||0;const h=v/max*BH;
+   const x=P+i*gw+(gw-bw*groups)/2+j*bw;const y=P+BH-h;
+   s+=`<rect x="${x}" y="${y}" width="${bw-2}" height="${Math.max(0,h)}" rx="2" fill="${se.color}"><title>${esc(lab)} · ${se.name}: ${opt.money?money(v):num(v)}</title></rect>`;});
+  s+=`<text x="${P+i*gw+gw/2}" y="${H-14}" text-anchor="middle" font-size="9" fill="#64748b">${esc(lab.slice(2))}</text>`;});
+ s+='</svg>';c.innerHTML=s;}
+function lineChart(id,labels,data,opt){opt=opt||{};const c=el(id);if(!c)return;
+ const W=Math.max(520,labels.length*46),H=230,P=36,BW=W-2*P,BH=H-2*P;
+ const max=Math.max(1,...data);
+ const xs=i=>P+(labels.length<=1?BW/2:BW*i/(labels.length-1));const ys=v=>P+BH-(v/max*BH);
+ let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMinYMid meet">`;
+ for(let g=0;g<=4;g++){const y=P+BH*g/4;const v=max*(1-g/4);
+  s+=`<line x1="${P}" y1="${y}" x2="${W-P}" y2="${y}" stroke="#eef2f7"/><text x="${P-6}" y="${y+3}" text-anchor="end" font-size="9" fill="#94a3b8">${opt.money?money(v):Math.round(v)}</text>`;}
+ const pts=data.map((v,i)=>`${xs(i)},${ys(v)}`).join(' ');
+ s+=`<polyline points="${P},${P+BH} ${pts} ${P+BW},${P+BH}" fill="${opt.color||'#2563eb'}22" stroke="none"/>`;
+ s+=`<polyline points="${pts}" fill="none" stroke="${opt.color||'#2563eb'}" stroke-width="2.5"/>`;
+ data.forEach((v,i)=>{s+=`<circle cx="${xs(i)}" cy="${ys(v)}" r="3" fill="#fff" stroke="${opt.color||'#2563eb'}" stroke-width="2"><title>${esc(labels[i])}: ${opt.money?money(v):num(v)}</title></circle>`;});
+ labels.forEach((lab,i)=>{if(labels.length>14&&i%2)return;s+=`<text x="${xs(i)}" y="${H-14}" text-anchor="middle" font-size="9" fill="#64748b">${esc(lab.slice(2))}</text>`;});
+ s+='</svg>';c.innerHTML=s;}
+function donut(id,items,opt){opt=opt||{};const c=el(id);if(!c)return;const top=items.slice(0,opt.n||6);
+ const total=top.reduce((a,d)=>a+d.v,0)||1;const fmt=opt.money?money:num;
+ const R=70,r=44,cx=90,cy=90;let a0=-Math.PI/2,s=`<svg viewBox="0 0 360 184" width="100%">`;
+ top.forEach((d,i)=>{const a1=a0+d.v/total*2*Math.PI;const x0=cx+R*Math.cos(a0),y0=cy+R*Math.sin(a0),x1=cx+R*Math.cos(a1),y1=cy+R*Math.sin(a1);
+  const xi1=cx+r*Math.cos(a1),yi1=cy+r*Math.sin(a1),xi0=cx+r*Math.cos(a0),yi0=cy+r*Math.sin(a0);const big=(a1-a0)>Math.PI?1:0;
+  s+=`<path d="M${x0} ${y0} A${R} ${R} 0 ${big} 1 ${x1} ${y1} L${xi1} ${yi1} A${r} ${r} 0 ${big} 0 ${xi0} ${yi0} Z" fill="${PAL[i%PAL.length]}"><title>${esc(d.k)}: ${fmt(d.v)} (${(d.v/total*100).toFixed(0)}%)</title></path>`;a0=a1;});
+ s+=`<text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="13" font-weight="800" fill="#0f172a">${fmt(total)}</text><text x="${cx}" y="${cy+14}" text-anchor="middle" font-size="9" fill="#64748b">total</text></svg>`;
+ let leg='<div class="legend">'+top.map((d,i)=>`<span><i style="background:${PAL[i%PAL.length]}"></i>${esc(d.k)} ${(d.v/total*100).toFixed(0)}%</span>`).join('')+'</div>';
+ c.innerHTML=s+leg;}
+function esc(s){return (s==null?'':''+s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function makeTable(id,rows,cols,opt){opt=opt||{};const c=el(id);if(!c)return;let sortK=opt.sort||cols[0].k,sortDir=opt.dir||-1;
+ function draw(){const sorted=[...rows].sort((a,b)=>{let x=a[sortK],y=b[sortK];if(typeof x==='number'||typeof y==='number'){x=+x||0;y=+y||0;}else{x=(''+x).toLowerCase();y=(''+y).toLowerCase();}return x<y?-sortDir:x>y?sortDir:0;});
+  const cap=opt.cap||300;const show=sorted.slice(0,cap);
+  let h='<div class="tablewrap"><table><thead><tr>'+cols.map(col=>`<th class="${col.num?'num':''}" data-k="${col.k}">${col.t}${sortK===col.k?(sortDir>0?' ▲':' ▼'):''}</th>`).join('')+'</tr></thead><tbody>';
+  h+=show.map(r=>'<tr>'+cols.map(col=>`<td class="${col.num?'num':''}">${col.fmt?col.fmt(r[col.k],r):esc(r[col.k])}</td>`).join('')+'</tr>').join('');
+  h+='</tbody></table></div>';
+  if(sorted.length>cap)h+=`<div class="hint" style="padding:8px 4px">Showing top ${cap} of ${num(sorted.length)} rows (sorted by ${sortK}). Use filters to narrow.</div>`;
+  c.innerHTML=h;
+  c.querySelectorAll('th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;if(k===sortK)sortDir*=-1;else{sortK=k;sortDir=-1;}draw();});}
+ draw();}
+function fillSelect(id,vals,label){const s=el(id);if(!s)return;s.innerHTML=`<option value="__all">All ${label}</option>`+vals.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');}
+
+const EMBED={"summary":{"tot_vendor":7772161,"tot_labor":348971,"tot_spend":8121131,"sp_pool":6230361,"sp_n":3454,"sp_gp":2180626,"zc_n":8966,"pj_n":168,"pj_val":2385269,"margin":0.35,"self_perf_rate":4.3,"clients":21,"ents":["Camelot","PizzaHut"],"wo":16538,"assets":5030,"as_cls":112},"month":{"labels":["2025-01","2025-02","2025-03","2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12"],"vendor":[453552,351547,652409,931470,525923,447373,634452,511730,391307,334974,610454,1926969],"labor":[30416,34780,28787,33142,34417,28311,29071,36138,26470,23967,21878,21563],"count":[1572,1343,1400,1480,1296,1225,1489,1332,1206,1699,1404,1089]},"byClient":[{"k":"Liberty Mutual Inc","vendor":3208830,"labor":211375,"pool":3042537},{"k":"7-Eleven","vendor":1628437,"labor":48900,"pool":1105557},{"k":"Bloomin Brands Inc","vendor":1558995,"labor":0,"pool":1227176},{"k":"Churchs Chicken","vendor":531496,"labor":20131,"pool":318734},{"k":"Pizza Hut","vendor":359063,"labor":44709,"pool":359063},{"k":"Rocket Mortgage","vendor":292066,"labor":2075,"pool":65229},{"k":"University of Oklahoma","vendor":95973,"labor":12450,"pool":85787},{"k":"Gates Rubber Co","vendor":35400,"labor":0,"pool":12575},{"k":"Epsilon","vendor":26946,"labor":1895,"pool":1827},{"k":"Sonic Restaurants","vendor":21482,"labor":0,"pool":2246},{"k":"Orion Office Reit","vendor":4168,"labor":1885,"pool":4168},{"k":"Ryder","vendor":353,"labor":4800,"pool":353}],"pool":[{"k":"700202 Hvac","v":1736889},{"k":"700203 Electrical","v":846788},{"k":"Inspection","v":670340},{"k":"HVAC","v":542641},{"k":"Roofing","v":428797},{"k":"HVAC (Heating / Cooling)","v":359063},{"k":"700205 Plumbing","v":193872},{"k":"700204 Structural/ Roof","v":147646},{"k":"Plumbing","v":109123},{"k":"700207 Repairs Other","v":95820},{"k":"Projects","v":90814},{"k":"Restoration","v":87362}]};
+
+const M=EMBED.month, C=EMBED.byClient, P=EMBED.pool, S=EMBED.summary;
+vbars('mTrend',M.labels,[{name:'Vendor',color:'#f59e0b',data:M.vendor},{name:'Labor',color:'#0d9488',data:M.labor}],{money:true});
+hbars('mClient',C.map(x=>({k:x.k,v:x.vendor+x.labor})),{money:true,n:10});
+hbars('mPool',P,{money:true,n:10,color:'#16a34a'});
+donut('mSplit',[{k:'Vendor (outsourced)',v:S.tot_vendor},{k:'Labor (self-performed)',v:S.tot_labor}],{money:true});
+const topPool=P[0]||{k:'-',v:0};const topClient=C[0]||{k:'-'};
+const riskClient=C.filter(x=>x.vendor+x.labor>20000).map(x=>({k:x.k,r:x.vendor/(x.vendor+x.labor)})).sort((a,b)=>b.r-a.r)[0]||{k:'-',r:0};
+el('mIns').innerHTML=[
+ ['o','Opportunity','Largest self-perform pool',`<b>${esc(topPool.k)}</b> — ${money(topPool.v)} of outsourced work in-scope for Camelot crews.`],
+ ['t','Threat','Account concentration risk',`<b>${esc(riskClient.k)}</b> outsources ${Math.round(riskClient.r*100)}% of its work — high risk the client hires subs directly.`],
+ ['s','Strength','Total opportunity identified',`${money(S.sp_pool)} recoverable revenue pool across ${num(S.sp_n)} work orders; ${money(S.sp_gp)} modeled gross profit.`],
+ ['w','Watch','Project-bid candidates',`${num(S.pj_n)} large work orders worth ${money(S.pj_val)} could have been proposed as project bids.`],
+].map(([c,t,h,p])=>`<div class="ins ${c}"><div class=tag>${t}</div><h4>${h}</h4><p>${p}</p></div>`).join('');
+</script></body></html>
