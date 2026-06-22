@@ -1,16 +1,15 @@
-# CFS Opportunity Finder — Dashboards
+# Opportunity Finder — Dashboards
 
-Public hosting for Camelot Facility Services (CFS) executive maintenance dashboards.
+Executive maintenance dashboards.
 
-## Why this repo exists
+## Purpsoe
 
-This repository hosts a set of **self-contained, interactive HTML dashboards** built from
-Camelot's CMMS work-order and asset data. They are published here via **GitHub Pages** so they
-can be opened in any browser and **shared with stakeholders through a simple link** — no Power BI,
-no server, no login, and no software to install.
+This repository hosts a set of **interactive dashboards** built from
+CMMS work-order and asset data. They are published here so they
+can be opened in any browser  no Power BI, no server, no login, and no software to install.
 
 The dashboards turn raw work-order exports into an executive view focused on the core question:
-**where can Camelot generate revenue beyond the base maintenance contract** — by self-performing
+**where can Camelot generate additional revenue beyond baseline contracts** — by self-performing
 work currently outsourced to vendors, recovering missed billing, and identifying project-bid
 candidates — alongside running data-quality and SWOT insight.
 
@@ -35,8 +34,6 @@ and charts are embedded — no external/CDN calls).
 Reporting period **January–December 2025** · 16,538 work orders · 21 clients across multiple CMMS
 databases · 5,030 asset records.
 
-## Updating
+## Clarificatinons
 
-Dashboards are regenerated from source data by the project pipeline (`scripts/etl.py` then
-`scripts/gen.py`) and the resulting HTML files in this repository are replaced. GitHub Pages
-redeploys automatically on each push to `main`.
+This repository is for demonstration and exploratory purposes only. The data only reflects enough sample cmms data to present a demo version of what is possible. 
