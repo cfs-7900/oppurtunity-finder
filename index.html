@@ -59,7 +59,7 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:26px;border-t
 .empty{padding:40px;text-align:center;color:var(--muted);font-weight:600}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);margin-top:10px}
 .legend span{display:inline-flex;align-items:center;gap:5px}.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
-</style></head><body><header class=top><div class=row><div><h1>Master Executive Dashboard</h1><div class=cat>All Categories Roll-Up</div></div><div class=meta>Camelot Facility Services · Opportunity Finder<br>Last updated 2026-06-23 21:53</div></div><div class=navlinks><a href="index.html" class="active">Master</a><a href="opportunity-finder.html" class="">Opportunity Finder</a><a href="work-orders.html" class="">Work Orders</a><a href="assets.html" class="">Assets</a><a href="data-quality.html" class="">Data Quality</a><a href="data-quality-scorecard.html" class="">DQ Scorecard</a></div></header><div class=wrap>
+</style></head><body><header class=top><div class=row><div><h1>Master Executive Dashboard</h1><div class=cat>All Categories Roll-Up</div></div><div class=meta>Camelot Facility Services · Opportunity Finder<br>Last updated 2026-06-23 22:15</div></div><div class=navlinks><a href="index.html" class="active">Master</a><a href="opportunity-finder.html" class="">Opportunity Finder</a><a href="work-orders.html" class="">Work Orders</a><a href="assets.html" class="">Assets</a><a href="locations.html" class="">Locations</a><a href="data-quality.html" class="">Data Quality</a><a href="data-quality-scorecard.html" class="">DQ Scorecard</a></div></header><div class=wrap>
 <div class=section-sub>Executive roll-up across all categories. Drill into any area using the tabs above.</div>
 <div class=kpis>
 <div class="kpi "><div class=lab>Total Maintenance Spend</div><div class=val>$12.5M</div><div class=sub>35,715 work orders · 34 clients</div></div>
@@ -70,7 +70,7 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:26px;border-t
 <div class="kpi red"><div class=lab>Data Quality Flags</div><div class=val>42,179</div><div class=sub>WOs missing cost detail</div></div>
 </div>
 <div class="grid g2">
- <div class=panel><h3>Monthly spend — vendor vs. self-performed</h3><div class=hint>Where the maintenance dollars went each month in 2025</div><div id=mTrend></div>
+ <div class=panel><h3>Monthly spend — vendor vs. self-performed</h3><div class=hint>Where the maintenance dollars went each month</div><div id=mTrend></div>
   <div class=legend><span><i style="background:#f59e0b"></i>Vendor (outsourced)</span><span><i style="background:#0d9488"></i>Labor (self-performed)</span></div></div>
  <div class=panel><h3>Spend by client</h3><div class=hint>Total maintenance spend, top accounts</div><div id=mClient></div></div>
 </div>
@@ -85,7 +85,7 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:26px;border-t
  (landscaping, snow removal, fire &amp; life safety, security, material purchases) per the reference list. The modeled recoverable figure applies a
  35% gross-margin assumption — adjust as actual self-perform economics are confirmed. Self-perform % by dollar is understated because
  18,897 work orders have labor assigned but $0 cost recorded (see Data Quality).</div>
-</div><footer>Generated 2026-06-23 21:53 · 17 source files · 35,715 work orders · 6,323 assets · data range 2025-01-01 to 2026-12-31 · self-contained (no internet required)</footer><script>
+</div><footer>Generated 2026-06-23 22:15 · 22 source files · 35,715 work orders · 6,323 assets · data range 2025-01-01 to 2026-12-31 · self-contained (no internet required)</footer><script>
 const PAL=['#2563eb','#0d9488','#7c3aed','#f59e0b','#dc2626','#16a34a','#0ea5e9','#db2777','#65a30d','#9333ea','#ea580c','#0891b2'];
 function money(n){n=+n||0;const s=n<0?'-':'';n=Math.abs(n);
  if(n>=1e6)return s+'$'+(n/1e6).toFixed(n>=1e7?1:2)+'M';

@@ -1,6 +1,6 @@
-# Opportunity Finder — Dashboards
+# CFS Opportunity Finder — Dashboards
 
-Hosting maintenance dashboards.
+Public hosting for Camelot Facility Services (CFS) executive maintenance dashboards.
 
 ## Why this repo exists
 
@@ -26,6 +26,7 @@ and charts are embedded — no external/CDN calls).
 | Opportunity Finder | [Opportunity Finder](https://cfs-7900.github.io/oppurtunity-finder/opportunity-finder.html) |
 | Work Orders | [Work Orders](https://cfs-7900.github.io/oppurtunity-finder/work-orders.html) |
 | Assets | [Assets](https://cfs-7900.github.io/oppurtunity-finder/assets.html) |
+| Locations | [Locations](https://cfs-7900.github.io/oppurtunity-finder/locations.html) |
 | Data Quality | [Data Quality](https://cfs-7900.github.io/oppurtunity-finder/data-quality.html) |
 | Data Quality Scorecard | [Data Quality Scorecard](https://cfs-7900.github.io/oppurtunity-finder/data-quality-scorecard.html) |
 

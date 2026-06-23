@@ -59,7 +59,7 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:26px;border-t
 .empty{padding:40px;text-align:center;color:var(--muted);font-weight:600}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);margin-top:10px}
 .legend span{display:inline-flex;align-items:center;gap:5px}.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
-</style></head><body><header class=top><div class=row><div><h1>Data Quality Scorecard</h1><div class=cat>Team Data-Capture Scores by Account</div></div><div class=meta>Camelot Facility Services · Opportunity Finder<br>Last updated 2026-06-23 21:53</div></div><div class=navlinks><a href="index.html" class="">Master</a><a href="opportunity-finder.html" class="">Opportunity Finder</a><a href="work-orders.html" class="">Work Orders</a><a href="assets.html" class="">Assets</a><a href="data-quality.html" class="">Data Quality</a><a href="data-quality-scorecard.html" class="active">DQ Scorecard</a></div></header><div class=wrap>
+</style></head><body><header class=top><div class=row><div><h1>Data Quality Scorecard</h1><div class=cat>Team Data-Capture Scores by Account</div></div><div class=meta>Camelot Facility Services · Opportunity Finder<br>Last updated 2026-06-23 22:15</div></div><div class=navlinks><a href="index.html" class="">Master</a><a href="opportunity-finder.html" class="">Opportunity Finder</a><a href="work-orders.html" class="">Work Orders</a><a href="assets.html" class="">Assets</a><a href="locations.html" class="">Locations</a><a href="data-quality.html" class="">Data Quality</a><a href="data-quality-scorecard.html" class="active">DQ Scorecard</a></div></header><div class=wrap>
 <div class=section-sub>How well each team captures data on their accounts. Scores combine six data-capture checks into a 0–100 grade. Toggle between client accounts and CMMS databases.</div>
 <div class=filters>
  <label>View by<select id=fDim onchange="render()"><option value=clients>Client account</option><option value=databases>CMMS database</option></select></label>
@@ -76,7 +76,7 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:26px;border-t
 <div id=sTable></div>
 <div class=insights id=sIns style="margin-top:18px"></div>
 <div class="note" style="margin-top:18px"><strong>How the score works.</strong> The composite is a weighted average of six checks: Cost recorded (20%), Labor valued when assigned (20%), Category populated (15%), Problem populated (15%), Vendor identified when outsourced (15%), Asset linked (15%). Metrics with no applicable work orders are skipped and the remaining weights re-normalized. Grades: A &ge;90, B &ge;80, C &ge;70, D &ge;60, F &lt;60. Higher = better data capture by the team.</div>
-</div><footer>Generated 2026-06-23 21:53 · 17 source files · 35,715 work orders · 6,323 assets · data range 2025-01-01 to 2026-12-31 · self-contained (no internet required)</footer><script>
+</div><footer>Generated 2026-06-23 22:15 · 22 source files · 35,715 work orders · 6,323 assets · data range 2025-01-01 to 2026-12-31 · self-contained (no internet required)</footer><script>
 const PAL=['#2563eb','#0d9488','#7c3aed','#f59e0b','#dc2626','#16a34a','#0ea5e9','#db2777','#65a30d','#9333ea','#ea580c','#0891b2'];
 function money(n){n=+n||0;const s=n<0?'-':'';n=Math.abs(n);
  if(n>=1e6)return s+'$'+(n/1e6).toFixed(n>=1e7?1:2)+'M';
