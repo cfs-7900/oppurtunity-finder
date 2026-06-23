@@ -1,6 +1,6 @@
 # CFS Opportunity Finder — Dashboards
 
- hosting for  maintenance dashboards.
+Public hosting for Camelot Facility Services (CFS) executive maintenance dashboards.
 
 ## Why this repo exists
 
@@ -33,8 +33,8 @@ and charts are embedded — no external/CDN calls).
 
 ## Coverage
 
-Reporting period **January–December 2025** · 24,839 work orders · 27 clients across 3 CMMS
-databases (Camelot, DFA, PizzaHut) · 5,030 asset records.
+Reporting period **2025–2026** · 35,715 work orders · 34 clients across 5 CMMS databases
+(Camelot, DFA, PizzaHut, Experian, NVC) · 6,323 asset records.
 
 ## Updating
 
