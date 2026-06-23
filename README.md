@@ -1,6 +1,6 @@
-# CFS Opportunity Finder — Dashboards
+# Opportunity Finder — Dashboards
 
-Public hosting for Camelot Facility Services (CFS) executive maintenance dashboards.
+Hosting maintenance dashboards.
 
 ## Why this repo exists
 
