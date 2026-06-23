@@ -27,6 +27,7 @@ and charts are embedded — no external/CDN calls).
 | Work Orders | [Work Orders](https://cfs-7900.github.io/oppurtunity-finder/work-orders.html) |
 | Assets | [Assets](https://cfs-7900.github.io/oppurtunity-finder/assets.html) |
 | Data Quality | [Data Quality](https://cfs-7900.github.io/oppurtunity-finder/data-quality.html) |
+| Data Quality Scorecard | [Data Quality Scorecard](https://cfs-7900.github.io/oppurtunity-finder/data-quality-scorecard.html) |
 
 > Start with the **Master Executive Dashboard**, then use the in-page tabs to move between views.
 
@@ -43,4 +44,4 @@ redeploys automatically on each push to `main`.
 
 ## Clarifications
 
-1. This repository is for demonstration and exploratory purposes only. The data only reflects enough sample cmms data to present a demo version of what is possible. 
+1. This repository is for demonstrati
