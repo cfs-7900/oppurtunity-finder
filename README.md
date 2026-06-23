@@ -33,8 +33,8 @@ and charts are embedded — no external/CDN calls).
 
 ## Coverage
 
-Reporting period **January–December 2025** · 16,538 work orders · 21 clients across multiple CMMS
-databases · 5,030 asset records.
+Reporting period **January–December 2025** · 24,839 work orders · 27 clients across 3 CMMS
+databases (Camelot, DFA, PizzaHut) · 5,030 asset records.
 
 ## Updating
 
@@ -44,4 +44,4 @@ redeploys automatically on each push to `main`.
 
 ## Clarifications
 
-1. This repository is for demonstrati
+1. This repository is for demonstration and exploratory purposes only. The data only reflects enough sample cmms data to present a demo version of what is possible. 
