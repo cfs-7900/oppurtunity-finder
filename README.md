@@ -40,3 +40,7 @@ databases · 5,030 asset records.
 Dashboards are regenerated from source data by the project pipeline (`scripts/etl.py` then
 `scripts/gen.py`) and the resulting HTML files in this repository are replaced. GitHub Pages
 redeploys automatically on each push to `main`.
+
+## Clarifications
+
+1. This repository is for demonstration and exploratory purposes only. The data only reflects enough sample cmms data to present a demo version of what is possible. 
